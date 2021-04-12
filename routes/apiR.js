@@ -30,7 +30,7 @@ module.exports = (app) => {
     });
 
     // * DELETE `/api/notes/:id` -
-    app.delete('/api/notes/:id', (req, res) => {
+    app.delete('/api/notes.html/:id', (req, res) => {
         //finds note by id, then converts the string into a JSON object with the id parameters of the request made
         let findNote = noteList.find(({ id }) => id === JSON.parse(req.params.id));
 

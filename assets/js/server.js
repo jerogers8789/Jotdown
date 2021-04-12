@@ -4,14 +4,16 @@ const { fstat } = require('fs');
 const path = require('path');
 const PORT = process.env.PORT || 3030;
 const app = express();
+const database = require('./db.json');
 
+app.use(express.static('assets'));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.get('/', function(req, res){
-    res.sendFile(path.join(__dirname,'./index.html'));
+    res.sendFile(path.join(__dirname,'./assets/index.html'));
 });
 app.get('./notes.html', function (req, res){
-    res.sendFile(path.join(__dirname,'./notes.html'));
+    res.sendFile(path.join(__dirname,'./assets/notes.html'));
 })
 app.route('/api/notes.html')
 .get(function(req, res){
@@ -39,7 +41,6 @@ app.delete('./api/notes.html/:id', function(req, res){
     for (let i = 0; i<database.length; i++) {
         if (database[i].id === req.params.id) {
             database.splice(i, 1);
-            break;
         }
     }
     fs.writeFileSync(jsonFilePath, JSON.stringify(database), function(err){
@@ -47,6 +48,6 @@ app.delete('./api/notes.html/:id', function(req, res){
     });
     res.json(database);
 });
-app.listen(PORT, function(){
-    console.log('Listening on port' + PORT);
-});
+app.listen(PORT, () =>
+    console.log('Listening on port' + PORT)
+);

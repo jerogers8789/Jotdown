@@ -1,8 +1,8 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "note taking app powered by express",
+  "main": "./assets/js/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
