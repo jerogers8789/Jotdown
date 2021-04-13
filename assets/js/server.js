@@ -2,9 +2,9 @@ const { urlencoded } = require('body-parser');
 const express = require('express');
 const { fstat } = require('fs');
 const path = require('path');
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3000;
 const app = express();
-const database = require('./db.json');
+const database = require('/Users/jeremiahrogers/Jotdown/assets/js/db.json');
 
 app.use(express.static('assets'));
 app.use(express.urlencoded({extended:true}));
@@ -20,7 +20,7 @@ app.route('/api/notes.html')
     res.json(database);
 })
 .post(function(req, res){
-    let jsonFilePath = path.join(__dirname,'./db.json');
+    let jsonFilePath = path.join(__dirname,'db.json');
     let newNote = req.body;
     let highID = 50;
     for (let i = 0; i < database.length; i++) {
